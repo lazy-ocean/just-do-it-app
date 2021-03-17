@@ -12,7 +12,8 @@ import {
   Button,
   FormHelperText,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const ModalTxt = {
   login: {
@@ -26,15 +27,33 @@ const ModalTxt = {
 };
 
 const Form = ({ type, button }) => {
+  const defUser = { username: "", password: "" };
+  const [user, setUser] = useState(defUser);
+  const [errors, setErrors] = useState([]);
+  const handleSubmit = () => {
+    axios.post("/session", user).catch(() => {
+      setErrors(["Invalid username or password"]);
+    });
+  };
+
   return type === "login" ? (
-    <form action="/session" method="post">
+    <form onSubmit={handleSubmit}>
+      {errors.length ? <FormHelperText>{errors[0]} </FormHelperText> : null}
       <FormControl id="username" isRequired>
         <FormLabel>Login</FormLabel>
-        <Input />
+        <Input
+          name="username"
+          value={user.name}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+        />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
-        <Input />
+        <Input
+          name="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
       </FormControl>
       <Button colorScheme="blue" type="submit">
         {button}
@@ -42,15 +61,23 @@ const Form = ({ type, button }) => {
     </form>
   ) : (
     <>
-      <FormControl id="email" isRequired>
-        <FormLabel>Create a login</FormLabel>
-        <Input />
+      <FormControl id="username" isRequired>
+        <FormLabel>Create a username</FormLabel>
+        <Input
+          name="username"
+          value={user.name}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+        />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Create a password</FormLabel>
-        <Input />
+        <Input
+          name="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
         <FormHelperText>
-          Can contain a minimum of 6 letters with numbers
+          Can contain a minimum of 6 letters and at least one number
         </FormHelperText>
       </FormControl>
       <Button colorScheme="blue">{button}</Button>
