@@ -30,7 +30,7 @@ const Tasks = () => {
         </div>
       ) : (
         <div>
-          <h2>There{"&apos"}re no tasks for you, good job!</h2>
+          <h2>There&apos;re no tasks for you, good job!</h2>
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../components/Modal";
 import { Button } from "@chakra-ui/react";
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 const Home = () => {
   const [modal, toggleModal] = useState(false);
@@ -18,6 +19,15 @@ const Home = () => {
     handleModalState();
   };
 
+  const manageGuest = () => {
+    axios
+      .post("/guest")
+      .then(() => {
+        setRedirect(true);
+      })
+      .catch(() => {});
+  };
+
   return redirect ? (
     <Redirect to="/tasks" />
   ) : (
@@ -31,7 +41,7 @@ const Home = () => {
         <h1>Welcome</h1>
         <Button onClick={() => manageModal("login")}>Login</Button>
         <Button onClick={() => manageModal("register")}>Register</Button>
-        <Button onClick={() => setRedirect(true)}>Try as a guest</Button>
+        <Button onClick={manageGuest}>Try as a guest</Button>
       </div>
     </>
   );

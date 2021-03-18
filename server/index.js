@@ -4,22 +4,30 @@ const crypto = require("crypto");
 const session = require("express-session");
 
 class User {
-  constructor(username, password) {
+  constructor(username, password, tasks) {
     this.username = username;
     this.password = password;
+    this.tasks = tasks || [];
   }
   isGuest() {
     return false;
+  }
+  getTasks() {
+    return this.tasks;
   }
 }
 
 class Guest {
   constructor() {
     this.guest = true;
+    this.username = "Guest";
+    this.tasks = ["Learn Express.js", "Buy groceries"];
   }
-
   isGuest() {
     return this.guest;
+  }
+  getTasks() {
+    return this.tasks;
   }
 }
 
@@ -29,7 +37,7 @@ const encrypt = (text) => {
   return hash.digest("hex");
 };
 
-const users = [new User("1", encrypt("1"))];
+const users = [new User("1", encrypt("1")), new Guest()];
 
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
@@ -68,8 +76,16 @@ app.post("/session", (req, res) => {
   res.send("Successfully logged in");
 });
 
+app.post("/guest", (req, res) => {
+  let user = new Guest();
+  req.session.username = user.username;
+  /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
+  res.send("Successfully logged in");
+});
+
 app.get("/tasks", (req, res) => {
-  const tasks = ["item1", "item2", "item3"];
+  const user = res.locals.currentUser;
+  const { tasks } = user;
   res.json(tasks);
   console.log("Sent list of items");
 });
