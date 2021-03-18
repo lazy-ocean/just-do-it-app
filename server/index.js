@@ -21,13 +21,23 @@ class Guest {
   constructor() {
     this.guest = true;
     this.username = "Guest";
-    this.tasks = ["Learn Express.js", "Buy groceries"];
+    this.tasks = [new Task("Learn Express.js"), new Task("Buy groceries")];
   }
   isGuest() {
     return this.guest;
   }
   getTasks() {
     return this.tasks;
+  }
+}
+
+let id = 1;
+
+class Task {
+  constructor(content) {
+    this.content = content;
+    id += 1;
+    this.id = id;
   }
 }
 
@@ -72,14 +82,12 @@ app.post("/session", (req, res) => {
     return;
   }
   req.session.username = username;
-  /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
   res.send("Successfully logged in");
 });
 
 app.post("/guest", (req, res) => {
   let user = new Guest();
   req.session.username = user.username;
-  /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
   res.send("Successfully logged in");
 });
 
@@ -112,8 +120,20 @@ app.post("/users", (req, res) => {
   res.send("Successfully registered");
 });
 
+app.post("/tasks", (req, res) => {
+  const user = res.locals.currentUser;
+  const { tasks } = user;
+  const { content } = req.body;
+  if (!content) {
+    res.status(422);
+  } else {
+    const newTask = new Task(content);
+    tasks.push(newTask);
+    res.json(newTask);
+  }
+});
+
 app.delete("/session", (req, res) => {
-  console.log(req.session);
   req.session.destroy();
   res.send("Session ended");
 });

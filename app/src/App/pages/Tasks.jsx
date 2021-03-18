@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import NewTask from "../components/NewTask";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -38,13 +39,18 @@ const Tasks = () => {
   ) : (
     <div>
       <Button onClick={handleLogout}>Log out</Button>
+
       <h3>Hi {user}!</h3>
+      <NewTask setTasks={setTasks} tasks={tasks} />
+      {user === "Guest" ? (
+        <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
+      ) : null}
       <h1>List of Items</h1>
       {tasks.length ? (
         <div>
           {/* Render the list of items */}
-          {tasks.map((t) => (
-            <div key={t}>{t}</div>
+          {tasks.map(({ content }) => (
+            <div key={content}>{content}</div>
           ))}
         </div>
       ) : (
