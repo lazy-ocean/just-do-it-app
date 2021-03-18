@@ -139,6 +139,26 @@ app.post("/tasks", (req, res) => {
   }
 });
 
+app.patch("/tasks/:id", (req, res) => {
+  const user = res.locals.currentUser;
+  const { content } = req.body;
+  const errors = {};
+  if (!content) errors.title = "Can't be blank";
+  const tasks = user.getTasks();
+  if (Object.keys(errors).length === 0) {
+    user.setTasks(
+      tasks.map((t) => {
+        if (t.id.toString() === req.params.id) {
+          t.content = content;
+        }
+        return t;
+      })
+    );
+    res.send("Successfully updated");
+  }
+  res.status(422);
+});
+
 app.delete("/tasks/:id", (req, res) => {
   const user = res.locals.currentUser;
   let tasks = user.getTasks();
