@@ -10,7 +10,6 @@ import {
 
 const Login = ({ errors, user, setUser }) => {
   const { commonErr } = errors;
-  console.log(errors);
   return (
     <>
       {commonErr ? <FormHelperText>{commonErr} </FormHelperText> : null}
