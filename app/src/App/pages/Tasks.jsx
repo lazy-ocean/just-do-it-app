@@ -34,6 +34,16 @@ const Tasks = () => {
       .catch(() => {});
   };
 
+  const handleDelete = (id) => {
+    axios
+      .delete(`/tasks/${id}`)
+      .then(() => {
+        const newTasks = tasks.filter((t) => t.id !== id);
+        setTasks(newTasks);
+      })
+      .catch(() => {});
+  };
+
   return redirect ? (
     <Redirect to="/" />
   ) : (
@@ -49,8 +59,11 @@ const Tasks = () => {
       {tasks.length ? (
         <div>
           {/* Render the list of items */}
-          {tasks.map(({ content }) => (
-            <div key={content}>{content}</div>
+          {tasks.map(({ content, id }) => (
+            <div key={content}>
+              <p>{content}</p>
+              <Button onClick={() => handleDelete(id)}>Delete task</Button>
+            </div>
           ))}
         </div>
       ) : (

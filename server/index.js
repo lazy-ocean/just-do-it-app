@@ -15,6 +15,9 @@ class User {
   getTasks() {
     return this.tasks;
   }
+  setTasks(t) {
+    this.tasks = t;
+  }
 }
 
 class Guest {
@@ -28,6 +31,9 @@ class Guest {
   }
   getTasks() {
     return this.tasks;
+  }
+  setTasks(t) {
+    this.tasks = t;
   }
 }
 
@@ -122,15 +128,22 @@ app.post("/users", (req, res) => {
 
 app.post("/tasks", (req, res) => {
   const user = res.locals.currentUser;
-  const { tasks } = user;
+  const tasks = user.getTasks();
   const { content } = req.body;
   if (!content) {
     res.status(422);
   } else {
     const newTask = new Task(content);
-    tasks.push(newTask);
+    user.setTasks([...tasks, newTask]);
     res.json(newTask);
   }
+});
+
+app.delete("/tasks/:id", (req, res) => {
+  const user = res.locals.currentUser;
+  let tasks = user.getTasks();
+  user.setTasks(tasks.filter((t) => t.id.toString() !== req.params.id));
+  res.send("Successfully deleted");
 });
 
 app.delete("/session", (req, res) => {

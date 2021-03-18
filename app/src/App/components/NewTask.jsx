@@ -13,10 +13,9 @@ const NewTask = ({ tasks, setTasks }) => {
       .post("/tasks", t)
       .then((response) => {
         setTasks([...tasks, response.data]);
+        setNewTask("");
       })
-      .catch(() => {
-        //setErrors(e.response.data);
-      });
+      .catch(() => {});
   };
 
   return (
