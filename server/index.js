@@ -85,8 +85,8 @@ app.post("/guest", (req, res) => {
 
 app.get("/tasks", (req, res) => {
   const user = res.locals.currentUser;
-  const { tasks } = user;
-  res.json(tasks);
+  const { tasks, username } = user;
+  res.json({ tasksList: tasks, username });
   console.log("Sent list of items");
 });
 
@@ -108,7 +108,14 @@ app.post("/users", (req, res) => {
   }
   const newUser = new User(username, encrypt(password));
   users.push(newUser);
+  req.session.username = username;
   res.send("Successfully registered");
+});
+
+app.delete("/session", (req, res) => {
+  console.log(req.session);
+  req.session.destroy();
+  res.send("Session ended");
 });
 
 const port = process.env.PORT || 5000;
