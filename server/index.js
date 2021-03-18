@@ -29,7 +29,7 @@ const encrypt = (text) => {
   return hash.digest("hex");
 };
 
-const users = [new User("admin", encrypt("qwerty"))];
+const users = [new User("1", encrypt("1"))];
 
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
@@ -60,13 +60,12 @@ app.post("/session", (req, res) => {
   const { username, password } = req.body;
   let user = users.find((u) => u.username === username);
   if (!user || user.password !== encrypt(password)) {
-    res.status(422);
-    res.send("Invalid nickname or password");
+    res.status(400).send({ commonErr: "Invalid nickname or password" });
     return;
   }
   req.session.username = username;
   /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
-  res.redirect("/");
+  res.send("Successfully logged in");
 });
 
 app.get("/tasks", (req, res) => {
@@ -74,6 +73,28 @@ app.get("/tasks", (req, res) => {
   res.json(tasks);
   console.log("Sent list of items");
 });
+
+app.post("/users", (req, res) => {
+  const errors = {};
+  const { username, password } = req.body;
+  if (!username) {
+    errors.username = "Username can't be blank";
+  } else {
+    const isUniq = !users.some((user) => user.username === username);
+    if (!isUniq) {
+      errors.username = "This username is already taken";
+    }
+  }
+  if (!password) errors.password = "Password can't be blank";
+  if (Object.keys(errors).length > 0) {
+    res.status(422).send(errors);
+    return;
+  }
+  const newUser = new User(username, encrypt(password));
+  users.push(newUser);
+  res.send("Successfully registered");
+});
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {

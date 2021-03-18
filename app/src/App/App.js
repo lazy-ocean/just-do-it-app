@@ -4,15 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
+import Tasks from "./pages/Tasks.jsx";
 
 const App = () => {
   const App = () => (
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
-        {
-          //<Route path="/list" component={Tasks} />
-        }
+        <Route path="/tasks" component={Tasks} />
       </Switch>
     </div>
   );

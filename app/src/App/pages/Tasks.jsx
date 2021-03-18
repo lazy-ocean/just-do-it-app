@@ -17,19 +17,20 @@ const Tasks = () => {
     getTasks();
   }, []);
 
+  console.log(tasks);
   return (
     <div>
       <h1>List of Items</h1>
       {tasks.length ? (
         <div>
           {/* Render the list of items */}
-          {tasks.map((item) => {
-            return <div key={item}>{item}</div>;
-          })}
+          {tasks.map((t) => (
+            <div key={t}>{t}</div>
+          ))}
         </div>
       ) : (
         <div>
-          <h2>No List Items Found</h2>
+          <h2>There{"&apos"}re no tasks for you, good job!</h2>
         </div>
       )}
     </div>
