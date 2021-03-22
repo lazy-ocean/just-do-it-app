@@ -15,19 +15,35 @@ class User {
   getTasks() {
     return this.tasks;
   }
+  setTasks(t) {
+    this.tasks = t;
+  }
 }
 
 class Guest {
   constructor() {
     this.guest = true;
     this.username = "Guest";
-    this.tasks = ["Learn Express.js", "Buy groceries"];
+    this.tasks = [new Task("Learn Express.js"), new Task("Buy groceries")];
   }
   isGuest() {
     return this.guest;
   }
   getTasks() {
     return this.tasks;
+  }
+  setTasks(t) {
+    this.tasks = t;
+  }
+}
+
+let id = 1;
+
+class Task {
+  constructor(content) {
+    this.content = content;
+    id += 1;
+    this.id = id;
   }
 }
 
@@ -72,14 +88,12 @@ app.post("/session", (req, res) => {
     return;
   }
   req.session.username = username;
-  /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
   res.send("Successfully logged in");
 });
 
 app.post("/guest", (req, res) => {
   let user = new Guest();
   req.session.username = user.username;
-  /////// REDIRECT TO TASKS OR SOMEWHERE ELSE, NOW DOESN'T WORK WHEN ERRORS (DOESN'T HIDE BANNER WHEN e.preventDefault())
   res.send("Successfully logged in");
 });
 
@@ -112,8 +126,47 @@ app.post("/users", (req, res) => {
   res.send("Successfully registered");
 });
 
+app.post("/tasks", (req, res) => {
+  const user = res.locals.currentUser;
+  const tasks = user.getTasks();
+  const { content } = req.body;
+  if (!content) {
+    res.status(422);
+  } else {
+    const newTask = new Task(content);
+    user.setTasks([...tasks, newTask]);
+    res.json(newTask);
+  }
+});
+
+app.patch("/tasks/:id", (req, res) => {
+  const user = res.locals.currentUser;
+  const { content } = req.body;
+  const errors = {};
+  if (!content) errors.title = "Can't be blank";
+  const tasks = user.getTasks();
+  if (Object.keys(errors).length === 0) {
+    user.setTasks(
+      tasks.map((t) => {
+        if (t.id.toString() === req.params.id) {
+          t.content = content;
+        }
+        return t;
+      })
+    );
+    res.send("Successfully updated");
+  }
+  res.status(422);
+});
+
+app.delete("/tasks/:id", (req, res) => {
+  const user = res.locals.currentUser;
+  let tasks = user.getTasks();
+  user.setTasks(tasks.filter((t) => t.id.toString() !== req.params.id));
+  res.send("Successfully deleted");
+});
+
 app.delete("/session", (req, res) => {
-  console.log(req.session);
   req.session.destroy();
   res.send("Session ended");
 });
