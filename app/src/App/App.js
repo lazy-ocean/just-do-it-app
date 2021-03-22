@@ -5,13 +5,18 @@ import "./App.css";
 import Home from "./pages/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import Tasks from "./pages/Tasks.jsx";
+//import Header from "./components/Header";
 
 const App = () => {
   const App = () => (
     <div>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/tasks" component={Tasks} />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/tasks">
+          <Tasks />
+        </Route>
       </Switch>
     </div>
   );

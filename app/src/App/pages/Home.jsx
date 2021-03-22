@@ -3,10 +3,10 @@ import Modal from "../components/Modal";
 import { Button } from "@chakra-ui/react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import Header from "../components/Header/Header";
 
 const Home = () => {
   const [modal, toggleModal] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [redirect, setRedirect] = useState(false);
   const [modalType, changeModal] = useState("login");
 
@@ -37,6 +37,7 @@ const Home = () => {
         handleModalState={handleModalState}
         modal={modal}
       />
+      <Header />
       <div>
         <h1>Welcome</h1>
         <Button onClick={() => manageModal("login")}>Login</Button>
