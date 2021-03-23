@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Modal from "../components/Modal";
-import Header from "../components/Header/";
-import { AuthButtonGroup, Button } from "../components/buttons/";
+import Modal from "../../components/Modal";
+import Header from "../../components/Header";
+import { AuthButtonGroup, Button } from "../../components/buttons";
+import Footer from "../../components/footer/";
+import "./home.css";
 
 const Home = () => {
   const [modal, toggleModal] = useState(false);
@@ -41,10 +43,22 @@ const Home = () => {
           handleModalState={handleModalState}
           modal={modal}
         />
-        <h1>Welcome</h1>
-        <AuthButtonGroup manageModal={manageModal} />
-        <Button onClick={manageGuest}>Try as a guest</Button>
+        <img src="../../img/cool_girl.png" alt="cool girl coding" />
+        <div className="home__main">
+          <h1 className="home__h">
+            Get things done.
+            <br />
+            Manage your tasks and achieve more.
+          </h1>
+          <div className="home__buttons">
+            <AuthButtonGroup manageModal={manageModal} />
+            <Button onClick={manageGuest} classn="guest">
+              Try as a guest
+            </Button>
+          </div>
+        </div>
       </main>
+      <Footer />
     </>
   );
 };

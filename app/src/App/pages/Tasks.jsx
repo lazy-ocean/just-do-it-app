@@ -6,6 +6,7 @@ import NewTask from "../components/NewTask";
 import Header from "../components/Header/";
 import TasksList from "../components/task/";
 import { Button } from "../components/buttons/";
+import Footer from "../components/footer/";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -53,6 +54,7 @@ const Tasks = () => {
         <h1>List of Items</h1>
         <TasksList tasks={tasks} setTasks={setTasks} />
       </main>
+      <Footer />
     </>
   );
 };

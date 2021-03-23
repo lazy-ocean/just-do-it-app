@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home";
+import Home from "./pages/home/";
 import Tasks from "./pages/Tasks.jsx";
 import Modal from "react-modal";
 Modal.setAppElement("#root");

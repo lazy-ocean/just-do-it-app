@@ -1,4 +1,5 @@
 :root {
+  --space-xl: 8rem;
   --space-l: 4rem;
   --space-m: 3rem;
   --space-s: 2rem;
@@ -10,9 +11,11 @@
   --color-main-dark: #006166;
   --color-main: #00adb5;
   --color-txt: #eeeeee;
+  --color-danger: #9d0b28;
 
+  --font-h1: 4rem;
   --font-main: 1.6rem;
-  --font-util: 1.8rem;
+  --font-util: 2rem;
 }
 
 html {
@@ -26,7 +29,23 @@ html {
 
 body {
   max-width: 1466px;
-  font-family: "Rubik", sans-serif;
+  font-family: "Raleway", sans-serif;
   margin: 0 auto;
   background-color: var(--color-bg-dark);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-txt);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-main);
 }
