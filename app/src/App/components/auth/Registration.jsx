@@ -1,41 +1,29 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import {
-  Input,
-  FormControl,
-  FormLabel,
-  Button,
-  FormHelperText,
-} from "@chakra-ui/react";
+import { Button } from "../buttons/";
 
 const Registration = ({ errors, user, setUser }) => {
   return (
     <>
-      <FormControl id="username" isRequired>
-        <FormLabel>Create a username</FormLabel>
-        <Input
-          name="username"
-          value={user.name}
-          onChange={(e) => setUser({ ...user, username: e.target.value })}
-        />
-        {errors.username ? (
-          <FormHelperText>{errors.username} </FormHelperText>
-        ) : null}
-      </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Create a password</FormLabel>
-        <Input
-          name="password"
-          value={user.password}
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        {errors.password ? (
-          <FormHelperText>{errors.password} </FormHelperText>
-        ) : null}
-        <FormHelperText>
-          Can contain a minimum of 6 letters and at least one number
-        </FormHelperText>
-      </FormControl>
+      <label htmlFor="username">Create a username</label>
+      <input
+        name="username"
+        id="username"
+        required
+        value={user.name}
+        onChange={(e) => setUser({ ...user, username: e.target.value })}
+      />
+      {errors.username ? <p>{errors.username} </p> : null}
+      <label htmlFor="password">Create a password</label>
+      <input
+        name="password"
+        id="password"
+        required
+        value={user.password}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+      />
+      {errors.password ? <p>{errors.password} </p> : null}
+      <p>Can contain a minimum of 6 letters and at least one number</p>
       <Button colorScheme="blue" type="submit">
         Create a new account
       </Button>

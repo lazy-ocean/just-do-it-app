@@ -1,0 +1,25 @@
+header {
+  display: flex;
+  padding: var(--space-m);
+  align-items: center;
+}
+
+.header__logo {
+  height: 6rem;
+  padding-right: var(--space-xs);
+}
+
+.header__txt {
+  display: flex;
+  align-items: center;
+}
+
+.header__buttons {
+  margin-left: auto;
+}
+
+.header__h {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-txt);
+}
