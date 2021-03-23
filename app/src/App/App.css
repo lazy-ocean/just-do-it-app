@@ -3,15 +3,30 @@
   --space-m: 3rem;
   --space-s: 2rem;
   --space-xs: 1rem;
-}
+  --space-xxs: 0.5rem;
 
-body {
-  box-sizing: border-box;
-  max-width: 1466px;
-  font-family: "Rubik", sans-serif;
-  margin: 0 auto;
+  --color-bg-dark: #20262c;
+  --color-grey-md: #3a4750;
+  --color-main-dark: #006166;
+  --color-main: #00adb5;
+  --color-txt: #eeeeee;
+
+  --font-main: 1.6rem;
+  --font-util: 1.8rem;
 }
 
 html {
   font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  max-width: 1466px;
+  font-family: "Rubik", sans-serif;
+  margin: 0 auto;
+  background-color: var(--color-bg-dark);
 }

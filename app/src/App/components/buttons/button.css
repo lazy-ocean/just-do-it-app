@@ -1,0 +1,27 @@
+.btn {
+  background-color: inherit;
+  border: 2px solid var(--color-main-dark);
+  border-radius: 5px;
+  color: var(--color-main);
+  font-size: var(--font-util);
+  line-height: 30px;
+  margin: var(--space-xxs);
+  padding: 0 var(--space-xs);
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.btn:hover {
+  color: var(--color-txt);
+  background-color: var(--color-main-dark);
+}
+
+.btn--login {
+  border: 2px solid var(--color-bg-dark);
+}
+
+.btn--login:hover {
+  color: var(--color-txt);
+  background-color: inherit;
+  border: 2px solid var(--color-main-dark);
+}
