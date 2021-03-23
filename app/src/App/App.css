@@ -1,6 +1,14 @@
+:root {
+  --space-l: 4rem;
+  --space-m: 3rem;
+  --space-s: 2rem;
+  --space-xs: 1rem;
+}
+
 body {
   box-sizing: border-box;
   max-width: 1466px;
+  font-family: "Rubik", sans-serif;
   margin: 0 auto;
 }
 

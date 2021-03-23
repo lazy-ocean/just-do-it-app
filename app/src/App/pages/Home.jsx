@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Modal from "../components/Modal";
-import { Button } from "@chakra-ui/react";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
-import Header from "../components/Header/Header";
+import { Redirect } from "react-router-dom";
+import Modal from "../components/Modal";
+import Header from "../components/Header/";
+import { AuthButtonGroup, Button } from "../components/buttons/";
 
 const Home = () => {
   const [modal, toggleModal] = useState(false);
@@ -32,18 +32,19 @@ const Home = () => {
     <Redirect to="/tasks" />
   ) : (
     <>
-      <Modal
-        modalType={modalType}
-        handleModalState={handleModalState}
-        modal={modal}
-      />
-      <Header />
-      <div>
+      <Header>
+        <AuthButtonGroup manageModal={manageModal} />
+      </Header>
+      <main>
+        <Modal
+          modalType={modalType}
+          handleModalState={handleModalState}
+          modal={modal}
+        />
         <h1>Welcome</h1>
-        <Button onClick={() => manageModal("login")}>Login</Button>
-        <Button onClick={() => manageModal("register")}>Register</Button>
+        <AuthButtonGroup manageModal={manageModal} />
         <Button onClick={manageGuest}>Try as a guest</Button>
-      </div>
+      </main>
     </>
   );
 };

@@ -1,13 +1,6 @@
 /* eslint-disable react/prop-types */
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
 import React from "react";
+import Modal from "react-modal";
 import Form from "./Form";
 
 const ModalTxt = {
@@ -23,15 +16,15 @@ const ModalWindow = (props) => {
   const { modalType, modal, handleModalState } = props;
   const { header } = ModalTxt[modalType];
   return (
-    <Modal isOpen={modal} onClose={handleModalState}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{header}</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Form type={modalType} />
-        </ModalBody>
-      </ModalContent>
+    <Modal
+      isOpen={modal}
+      onRequestClose={handleModalState}
+      className="modal"
+      shouldCloseOnOverlayClick={true}
+    >
+      <button onClick={handleModalState}>Close Modal</button>
+      {header}
+      <Form type={modalType} />
     </Modal>
   );
 };
