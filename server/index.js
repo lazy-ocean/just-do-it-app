@@ -24,7 +24,11 @@ class Guest {
   constructor() {
     this.guest = true;
     this.username = "Guest";
-    this.tasks = [new Task("Learn Express.js"), new Task("Buy groceries")];
+    this.tasks = [
+      new Task("Learn Express.js"),
+      new Task("Buy groceries"),
+      new Task("Ace the interview"),
+    ];
   }
   isGuest() {
     return this.guest;

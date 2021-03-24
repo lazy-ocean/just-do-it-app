@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import EasyEdit, { Types } from "react-easy-edit";
+import "./task.css";
+import { Button } from "../buttons/";
 
 const TasksList = ({ tasks, setTasks }) => {
   const handleDelete = (id) => {
@@ -33,7 +35,7 @@ const Task = ({ id, content, handleDelete }) => {
   };
 
   return (
-    <>
+    <div className="task__container">
       <EasyEdit
         type={Types.TEXT}
         value={content}
@@ -42,8 +44,8 @@ const Task = ({ id, content, handleDelete }) => {
         saveButtonLabel="Save"
         cancelButtonLabel="Cancel"
       />
-      <button onClick={() => handleDelete(id)}>Delete task</button>
-    </>
+      <Button onClick={() => handleDelete(id)}>Delete task</Button>
+    </div>
   );
 };
 

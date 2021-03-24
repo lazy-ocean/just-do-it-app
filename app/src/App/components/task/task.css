@@ -1,0 +1,13 @@
+.easy-edit-wrapper {
+  font-size: var(--font-main);
+  padding: var(--space-xs);
+  color: var(--color-bg-dark);
+  background-color: var(--color-txt);
+  margin: var(--space-xs) var(--space-s) var(--space-xs) 0;
+  min-width: 60%;
+}
+
+.task__container {
+  display: flex;
+  align-items: center;
+}

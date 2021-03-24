@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import NewTask from "../components/NewTask";
-import Header from "../components/Header/";
-import TasksList from "../components/task/";
-import { Button } from "../components/buttons/";
-import Footer from "../components/footer/";
+import NewTask from "../../components/NewTask";
+import Header from "../../components/Header";
+import TasksList from "../../components/task";
+import { Button } from "../../components/buttons";
+import Footer from "../../components/footer";
+import "./tasks.css";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -45,7 +46,7 @@ const Tasks = () => {
       <Header>
         <Button onClick={handleLogout}>Log out</Button>
       </Header>
-      <main>
+      <main className="tasks__container">
         <h3>Hi {user}!</h3>
         <NewTask setTasks={setTasks} tasks={tasks} />
         {user === "Guest" ? (

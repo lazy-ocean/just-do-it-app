@@ -1,0 +1,13 @@
+.tasks__container {
+  margin: 0 var(--space-l);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-m);
+  color: var(--color-txt);
+}
+
+h3 {
+  font-size: var(--font-h3);
+  margin: 0;
+  color: var(--color-txt);
+}
