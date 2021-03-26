@@ -48,6 +48,7 @@ class Task {
     this.content = content;
     id += 1;
     this.id = id;
+    this.completed = false;
   }
 }
 
@@ -145,7 +146,8 @@ app.post("/tasks", (req, res) => {
 
 app.patch("/tasks/:id", (req, res) => {
   const user = res.locals.currentUser;
-  const { content } = req.body;
+  const { content, completed } = req.body;
+  console.log({ content, completed });
   const errors = {};
   if (!content) errors.title = "Can't be blank";
   const tasks = user.getTasks();
@@ -154,10 +156,12 @@ app.patch("/tasks/:id", (req, res) => {
       tasks.map((t) => {
         if (t.id.toString() === req.params.id) {
           t.content = content;
+          t.completed = completed;
         }
         return t;
       })
     );
+    console.log("updated");
     res.send("Successfully updated");
   }
   res.status(422);

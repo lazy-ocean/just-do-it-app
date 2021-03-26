@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import EasyEdit, { Types } from "react-easy-edit";
 import "./task.css";
 import { Button } from "../buttons/";
 
 const TasksList = ({ tasks, setTasks }) => {
+  // TODO: tasks by categories
+  const completedTasks = tasks.filter(({ completed }) => completed);
+
   const handleDelete = (id) => {
     axios
       .delete(`/tasks/${id}`)
@@ -17,8 +20,15 @@ const TasksList = ({ tasks, setTasks }) => {
 
   return tasks.length ? (
     <div>
-      {tasks.map(({ content, id }) => (
-        <Task key={id} content={content} id={id} handleDelete={handleDelete} />
+      {tasks.map(({ content, id, completed }) => (
+        <Task
+          key={id}
+          content={content}
+          completed={completed}
+          id={id}
+          handleDelete={handleDelete}
+          completedTasks={completedTasks}
+        />
       ))}
     </div>
   ) : (
@@ -28,14 +38,24 @@ const TasksList = ({ tasks, setTasks }) => {
   );
 };
 
-const Task = ({ id, content, handleDelete }) => {
+const Task = ({ id, content, completed, handleDelete }) => {
+  const [completedTask, setCompletedTask] = useState(completed);
   const handleEditing = (value) => {
-    const edited = { content: value };
+    const edited = { content: value, completed: completedTask };
     axios.patch(`/tasks/${id}`, edited).catch(() => {});
   };
 
+  useEffect(() => {
+    handleEditing(content);
+  }, [completedTask]);
+
   return (
-    <div className="task__container">
+    <div className={`task__container ${completedTask ? "complete" : null}`}>
+      <input
+        type="checkbox"
+        checked={completedTask}
+        onChange={() => setCompletedTask(!completedTask)}
+      />
       <EasyEdit
         type={Types.TEXT}
         value={content}
