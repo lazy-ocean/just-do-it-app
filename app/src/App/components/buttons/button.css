@@ -1,7 +1,7 @@
 .btn {
   background-color: inherit;
   border: 2px solid var(--color-main);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   color: var(--color-main);
   font-size: var(--font-util);
   line-height: calc(var(--font-util) * 2);
@@ -36,4 +36,9 @@
 
 .btn--reg {
   font-weight: 600;
+}
+
+.btn--delete {
+  margin-left: auto;
+  font-size: var(--font-main);
 }

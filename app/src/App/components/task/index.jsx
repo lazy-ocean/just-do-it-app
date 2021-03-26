@@ -50,21 +50,33 @@ const Task = ({ id, content, completed, handleDelete }) => {
   }, [completedTask]);
 
   return (
-    <div className={`task__container ${completedTask ? "complete" : null}`}>
+    <div className={`task__container ${completedTask ? "complete" : ""}`}>
       <input
         type="checkbox"
+        id={`checkbox-${id}`}
         checked={completedTask}
         onChange={() => setCompletedTask(!completedTask)}
+        className="cbx__input"
       />
-      <EasyEdit
-        type={Types.TEXT}
-        value={content}
-        onSave={handleEditing}
-        onCancel={() => {}}
-        saveButtonLabel="Save"
-        cancelButtonLabel="Cancel"
-      />
-      <Button onClick={() => handleDelete(id)}>Delete task</Button>
+      <div className="cbx">
+        <label htmlFor={`checkbox-${id}`}>
+          <svg width="12px" height="9px" viewBox="0 0 12 9">
+            <polyline points="1 5 4 8 11 1"></polyline>
+          </svg>
+        </label>
+        <EasyEdit
+          type={Types.TEXT}
+          value={content}
+          onSave={handleEditing}
+          onCancel={() => {}}
+          saveButtonLabel="Save"
+          cancelButtonLabel="Cancel"
+        />
+      </div>
+
+      <Button classn="delete" onClick={() => handleDelete(id)}>
+        Delete task
+      </Button>
     </div>
   );
 };

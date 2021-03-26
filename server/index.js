@@ -147,7 +147,6 @@ app.post("/tasks", (req, res) => {
 app.patch("/tasks/:id", (req, res) => {
   const user = res.locals.currentUser;
   const { content, completed } = req.body;
-  console.log({ content, completed });
   const errors = {};
   if (!content) errors.title = "Can't be blank";
   const tasks = user.getTasks();
@@ -161,7 +160,6 @@ app.patch("/tasks/:id", (req, res) => {
         return t;
       })
     );
-    console.log("updated");
     res.send("Successfully updated");
   }
   res.status(422);
