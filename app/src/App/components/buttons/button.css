@@ -10,7 +10,7 @@
   cursor: pointer;
   font-weight: 300;
   transition: all 0.2s;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font);
 }
 
 .btn:hover {
@@ -38,7 +38,14 @@
   font-weight: 600;
 }
 
-.btn--delete {
+.btn--delete,
+.btn--task {
   margin-left: auto;
-  font-size: var(--font-main);
+  padding: var(--space-xxs);
+  line-height: var(--font-main);
+}
+
+.btn--task {
+  background-color: transparent;
+  margin-left: var(--space-s);
 }

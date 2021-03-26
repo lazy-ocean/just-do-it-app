@@ -9,19 +9,34 @@
   border-radius: var(--border-radius);
 }
 
-.easy-edit-wrapper {
+.easy-edit-inline-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.easy-edit-wrapper,
+.easy-edit-component-wrapper > input {
   background-color: var(--color-grey-md);
   position: relative;
   vertical-align: middle;
   margin-left: var(--space-s);
+  color: var(--color-txt);
+  font-family: var(--font);
+  font-size: var(--font-main);
+}
+
+.easy-edit-component-wrapper > input {
+  border: none;
+  outline: 1px solid var(--color-main);
+  padding: var(--space-xxs) 0;
 }
 
 .cbx {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-  display: inherit;
-  padding: var(--space-xs);
+  display: inline-flex;
+  align-items: center;
 }
 .cbx__input {
   display: none;
@@ -42,7 +57,7 @@
   border: 1px solid var(--color-txt);
   transition: all 0.2s ease;
 }
-.cbx svg {
+.cbx .check {
   position: absolute;
   z-index: 1;
   top: 4px;
@@ -89,7 +104,7 @@
   animation: check 0.6s ease;
 }
 
-.cbx__input:checked + .cbx label:first-child svg {
+.cbx__input:checked + .cbx label:first-child .check {
   stroke-dashoffset: 0;
 }
 

@@ -3,6 +3,11 @@ import axios from "axios";
 import EasyEdit, { Types } from "react-easy-edit";
 import "./task.css";
 import { Button } from "../buttons/";
+import {
+  RiDeleteBin6Line,
+  RiSave3Line,
+  RiCloseCircleLine,
+} from "react-icons/ri";
 
 const TasksList = ({ tasks, setTasks }) => {
   // TODO: tasks by categories
@@ -60,7 +65,7 @@ const Task = ({ id, content, completed, handleDelete }) => {
       />
       <div className="cbx">
         <label htmlFor={`checkbox-${id}`}>
-          <svg width="12px" height="9px" viewBox="0 0 12 9">
+          <svg className="check" width="12px" height="9px" viewBox="0 0 12 9">
             <polyline points="1 5 4 8 11 1"></polyline>
           </svg>
         </label>
@@ -69,13 +74,15 @@ const Task = ({ id, content, completed, handleDelete }) => {
           value={content}
           onSave={handleEditing}
           onCancel={() => {}}
-          saveButtonLabel="Save"
-          cancelButtonLabel="Cancel"
+          saveButtonLabel={<RiSave3Line />}
+          saveButtonStyle="btn btn--task"
+          cancelButtonStyle="btn btn--task"
+          cancelButtonLabel={<RiCloseCircleLine />}
         />
       </div>
 
       <Button classn="delete" onClick={() => handleDelete(id)}>
-        Delete task
+        <RiDeleteBin6Line />
       </Button>
     </div>
   );

@@ -20,6 +20,7 @@
   --font-util: 2rem;
 
   --border-radius: 5px;
+  --font: "Raleway", sans-serif;
 }
 
 html {
@@ -33,7 +34,7 @@ html {
 
 body {
   max-width: 1466px;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font);
   margin: 0 auto;
   background-color: var(--color-bg-dark);
 }
