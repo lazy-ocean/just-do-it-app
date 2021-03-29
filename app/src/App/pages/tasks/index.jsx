@@ -61,20 +61,24 @@ const Tasks = () => {
         {user === "Guest" ? (
           <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
         ) : null}
-        <h1>Active tasks 😤</h1>
-        <TasksList
-          tasks={categorizedTasks.active}
-          category="active"
-          setTasks={setTasks}
-          getTasks={getTasks}
-        />
-        <h1>Completed tasks 😎</h1>
-        <TasksList
-          tasks={categorizedTasks.completed}
-          category="completed"
-          setTasks={setTasks}
-          getTasks={getTasks}
-        />
+        <div className="category">
+          <h3 className="category__name">Active tasks 😤</h3>
+          <TasksList
+            tasks={categorizedTasks.active}
+            category="active"
+            setTasks={setTasks}
+            getTasks={getTasks}
+          />
+        </div>
+        <div className="category">
+          <h3 className="category__name">Completed tasks 😎</h3>
+          <TasksList
+            tasks={categorizedTasks.completed}
+            category="completed"
+            setTasks={setTasks}
+            getTasks={getTasks}
+          />
+        </div>
       </main>
       <Footer />
     </>

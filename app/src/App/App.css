@@ -12,11 +12,12 @@
   --color-main-dark: #006166;
   --color-main: #00adb5;
   --color-txt: #eeeeee;
-  --color-txt-inactive: #bdbdbd;
+  --color-txt-inactive: #999999;
   --color-danger: #9d0b28;
 
   --font-h1: 4rem;
-  --font-h3: 3rem;
+  --font-h2: 3rem;
+  --font-h3: 2.6rem;
   --font-main: 1.6rem;
   --font-util: 2rem;
 

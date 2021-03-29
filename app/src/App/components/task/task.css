@@ -115,7 +115,7 @@
 }
 
 .cbx__input:checked + .cbx div {
-  color: var(--color-grey-light);
+  color: var(--color-txt-inactive);
   transition: all 0.3s ease;
 }
 
