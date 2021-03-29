@@ -24,7 +24,11 @@ class Guest {
   constructor() {
     this.guest = true;
     this.username = "Guest";
-    this.tasks = [new Task("Learn Express.js"), new Task("Buy groceries")];
+    this.tasks = [
+      new Task("Learn Express.js"),
+      new Task("Buy groceries"),
+      new Task("Ace the interview"),
+    ];
   }
   isGuest() {
     return this.guest;
@@ -44,6 +48,7 @@ class Task {
     this.content = content;
     id += 1;
     this.id = id;
+    this.completed = false;
   }
 }
 
@@ -141,7 +146,7 @@ app.post("/tasks", (req, res) => {
 
 app.patch("/tasks/:id", (req, res) => {
   const user = res.locals.currentUser;
-  const { content } = req.body;
+  const { content, completed } = req.body;
   const errors = {};
   if (!content) errors.title = "Can't be blank";
   const tasks = user.getTasks();
@@ -150,6 +155,7 @@ app.patch("/tasks/:id", (req, res) => {
       tasks.map((t) => {
         if (t.id.toString() === req.params.id) {
           t.content = content;
+          t.completed = completed;
         }
         return t;
       })

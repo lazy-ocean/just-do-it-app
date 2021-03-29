@@ -1,7 +1,7 @@
 .btn {
   background-color: inherit;
   border: 2px solid var(--color-main);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   color: var(--color-main);
   font-size: var(--font-util);
   line-height: calc(var(--font-util) * 2);
@@ -10,7 +10,7 @@
   cursor: pointer;
   font-weight: 300;
   transition: all 0.2s;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font);
 }
 
 .btn:hover {
@@ -36,4 +36,16 @@
 
 .btn--reg {
   font-weight: 600;
+}
+
+.btn--action,
+.btn--task {
+  margin-left: auto;
+  padding: var(--space-xxs);
+  line-height: var(--font-main);
+}
+
+.btn--task {
+  background-color: transparent;
+  margin-left: var(--space-s);
 }

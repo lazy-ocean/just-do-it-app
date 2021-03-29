@@ -2,16 +2,26 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import NewTask from "../components/NewTask";
-import Header from "../components/Header/";
-import TasksList from "../components/task/";
-import { Button } from "../components/buttons/";
-import Footer from "../components/footer/";
+import NewTask from "../../components/forms/NewTask";
+import Header from "../../components/Header";
+import TasksList from "../../components/task";
+import { Button } from "../../components/buttons";
+import Footer from "../../components/footer";
+import "./tasks.css";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState("");
+
+  const categorizedTasks = tasks.reduce(
+    (acc, task) => {
+      const { completed } = task;
+      completed ? acc.completed.push(task) : acc.active.push(task);
+      return acc;
+    },
+    { completed: [], active: [] }
+  );
 
   const getTasks = async () => {
     try {
@@ -45,14 +55,30 @@ const Tasks = () => {
       <Header>
         <Button onClick={handleLogout}>Log out</Button>
       </Header>
-      <main>
+      <main className="tasks__container">
         <h3>Hi {user}!</h3>
         <NewTask setTasks={setTasks} tasks={tasks} />
         {user === "Guest" ? (
           <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
         ) : null}
-        <h1>List of Items</h1>
-        <TasksList tasks={tasks} setTasks={setTasks} />
+        <div className="category">
+          <h3 className="category__name">Active tasks 😤</h3>
+          <TasksList
+            tasks={categorizedTasks.active}
+            category="active"
+            setTasks={setTasks}
+            getTasks={getTasks}
+          />
+        </div>
+        <div className="category">
+          <h3 className="category__name">Completed tasks 😎</h3>
+          <TasksList
+            tasks={categorizedTasks.completed}
+            category="completed"
+            setTasks={setTasks}
+            getTasks={getTasks}
+          />
+        </div>
       </main>
       <Footer />
     </>

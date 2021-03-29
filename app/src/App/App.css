@@ -2,20 +2,27 @@
   --space-xl: 8rem;
   --space-l: 4rem;
   --space-m: 3rem;
-  --space-s: 2rem;
+  --space-s: 1.5rem;
   --space-xs: 1rem;
   --space-xxs: 0.5rem;
 
   --color-bg-dark: #20262c;
-  --color-grey-md: #3a4750;
+  --color-grey-md: #2d353b;
+  --color-grey-light: #565c61;
   --color-main-dark: #006166;
   --color-main: #00adb5;
   --color-txt: #eeeeee;
+  --color-txt-inactive: #999999;
   --color-danger: #9d0b28;
 
   --font-h1: 4rem;
+  --font-h2: 3rem;
+  --font-h3: 2.6rem;
   --font-main: 1.6rem;
   --font-util: 2rem;
+
+  --border-radius: 5px;
+  --font: "Raleway", sans-serif;
 }
 
 html {
@@ -29,7 +36,7 @@ html {
 
 body {
   max-width: 1466px;
-  font-family: "Raleway", sans-serif;
+  font-family: var(--font);
   margin: 0 auto;
   background-color: var(--color-bg-dark);
 }

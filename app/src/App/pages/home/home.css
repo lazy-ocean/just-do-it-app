@@ -1,4 +1,4 @@
-main {
+.home__container {
   margin: var(--space-xl) auto;
   display: flex;
   align-items: center;

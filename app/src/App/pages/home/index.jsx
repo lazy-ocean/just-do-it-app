@@ -37,7 +37,7 @@ const Home = () => {
       <Header>
         <AuthButtonGroup manageModal={manageModal} />
       </Header>
-      <main>
+      <main className="home__container">
         <Modal
           modalType={modalType}
           handleModalState={handleModalState}

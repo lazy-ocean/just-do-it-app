@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import axios from "axios";
-import { Button } from "./buttons/";
+import { Button } from "../buttons";
+import { GoPlus } from "react-icons/go";
+import "./forms.css";
 
 const NewTask = ({ tasks, setTasks }) => {
   const [newTask, setNewTask] = useState("");
@@ -19,8 +20,9 @@ const NewTask = ({ tasks, setTasks }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className="task__form">
       <input
+        className="input task__input"
         type="text"
         name="username"
         value={newTask}
@@ -29,8 +31,9 @@ const NewTask = ({ tasks, setTasks }) => {
         onChange={(e) => setNewTask(e.target.value)}
         placeholder="What are you gonna do today?"
       />
-      <Button type="submit">Add</Button>
-      {/* add select categories (or nah) */}
+      <Button type="submit" classn="action">
+        <GoPlus />
+      </Button>
     </form>
   );
 };
