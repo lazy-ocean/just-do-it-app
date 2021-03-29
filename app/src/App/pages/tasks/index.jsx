@@ -14,6 +14,15 @@ const Tasks = () => {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState("");
 
+  const categorizedTasks = tasks.reduce(
+    (acc, task) => {
+      const { completed } = task;
+      completed ? acc.completed.push(task) : acc.active.push(task);
+      return acc;
+    },
+    { completed: [], active: [] }
+  );
+
   const getTasks = async () => {
     try {
       const t = await axios.get("/tasks");
@@ -52,8 +61,20 @@ const Tasks = () => {
         {user === "Guest" ? (
           <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
         ) : null}
-        <h1>List of Items</h1>
-        <TasksList tasks={tasks} setTasks={setTasks} />
+        <h1>Active tasks 😤</h1>
+        <TasksList
+          tasks={categorizedTasks.active}
+          category="active"
+          setTasks={setTasks}
+          getTasks={getTasks}
+        />
+        <h1>Completed tasks 😎</h1>
+        <TasksList
+          tasks={categorizedTasks.completed}
+          category="completed"
+          setTasks={setTasks}
+          getTasks={getTasks}
+        />
       </main>
       <Footer />
     </>
@@ -61,3 +82,20 @@ const Tasks = () => {
 };
 
 export default Tasks;
+
+/* {
+  {
+    Object.keys(categorizedTasks).map((category) => {
+      return (
+        <div key={category}>
+          <h1>{category}</h1>
+          <TasksList
+            tasks={categorizedTasks[category]}
+            setTasks={setTasks}
+            getTasks={getTasks}
+          />
+        </div>
+      );
+    });
+  }
+} */

@@ -9,10 +9,7 @@ import {
   RiCloseCircleLine,
 } from "react-icons/ri";
 
-const TasksList = ({ tasks, setTasks }) => {
-  // TODO: tasks by categories
-  const completedTasks = tasks.filter(({ completed }) => completed);
-
+const TasksList = ({ tasks, setTasks, getTasks, category }) => {
   const handleDelete = (id) => {
     axios
       .delete(`/tasks/${id}`)
@@ -32,18 +29,22 @@ const TasksList = ({ tasks, setTasks }) => {
           completed={completed}
           id={id}
           handleDelete={handleDelete}
-          completedTasks={completedTasks}
+          getTasks={getTasks}
         />
       ))}
     </div>
   ) : (
     <div>
-      <h2>There&apos;re no tasks for you, good job!</h2>
+      {category === "active" ? (
+        <h2>There&apos;re no tasks for you, good job!</h2>
+      ) : (
+        <h2>You can do it!</h2>
+      )}
     </div>
   );
 };
 
-const Task = ({ id, content, completed, handleDelete }) => {
+const Task = ({ id, content, completed, handleDelete, getTasks }) => {
   const [completedTask, setCompletedTask] = useState(completed);
   const handleEditing = (value) => {
     const edited = { content: value, completed: completedTask };
@@ -52,6 +53,13 @@ const Task = ({ id, content, completed, handleDelete }) => {
 
   useEffect(() => {
     handleEditing(content);
+  }, [completedTask]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => getTasks(), 300);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [completedTask]);
 
   return (
