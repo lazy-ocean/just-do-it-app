@@ -89,7 +89,7 @@ const Task = ({ id, content, completed, handleDelete, getTasks }) => {
         />
       </div>
 
-      <Button classn="delete" onClick={() => handleDelete(id)}>
+      <Button classn="action" onClick={() => handleDelete(id)}>
         <RiDeleteBin6Line />
       </Button>
     </div>

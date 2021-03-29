@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import NewTask from "../../components/NewTask";
+import NewTask from "../../components/forms/NewTask";
 import Header from "../../components/Header";
 import TasksList from "../../components/task";
 import { Button } from "../../components/buttons";
@@ -82,20 +82,3 @@ const Tasks = () => {
 };
 
 export default Tasks;
-
-/* {
-  {
-    Object.keys(categorizedTasks).map((category) => {
-      return (
-        <div key={category}>
-          <h1>{category}</h1>
-          <TasksList
-            tasks={categorizedTasks[category]}
-            setTasks={setTasks}
-            getTasks={getTasks}
-          />
-        </div>
-      );
-    });
-  }
-} */
