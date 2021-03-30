@@ -14,7 +14,7 @@ const sessionRouter = require("./routes/session");
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
 app.use(Express.json());
-app.use(Express.urlencoded());
+app.use(Express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: secretKey,
