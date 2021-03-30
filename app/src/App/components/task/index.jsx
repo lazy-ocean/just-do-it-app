@@ -3,11 +3,8 @@ import axios from "axios";
 import EasyEdit, { Types } from "react-easy-edit";
 import "./task.css";
 import { Button } from "../buttons/";
-import {
-  RiDeleteBin6Line,
-  RiSave3Line,
-  RiCloseCircleLine,
-} from "react-icons/ri";
+import { RiDeleteBin6Line, RiSave3Line } from "react-icons/ri";
+import { VscChromeClose } from "react-icons/vsc";
 
 const TasksList = ({ tasks, setTasks, getTasks, category }) => {
   const handleDelete = (id) => {
@@ -85,7 +82,7 @@ const Task = ({ id, content, completed, handleDelete, getTasks }) => {
           saveButtonLabel={<RiSave3Line />}
           saveButtonStyle="btn btn--task"
           cancelButtonStyle="btn btn--task"
-          cancelButtonLabel={<RiCloseCircleLine />}
+          cancelButtonLabel={<VscChromeClose />}
         />
       </div>
 

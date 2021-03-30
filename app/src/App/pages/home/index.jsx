@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Modal from "../../components/Modal";
+import Modal from "../../components/modal/";
 import Header from "../../components/Header";
 import { AuthButtonGroup, Button } from "../../components/buttons";
 import Footer from "../../components/footer/";

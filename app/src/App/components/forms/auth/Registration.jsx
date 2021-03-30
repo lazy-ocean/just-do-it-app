@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { Button } from "../buttons/";
+import { Button } from "../../buttons/";
 
-const Registration = ({ errors, user, setUser }) => {
+const Registration = ({ errors, user, setUser, handleSubmit }) => {
   return (
-    <>
-      <label htmlFor="username">Create a username</label>
+    <form onSubmit={handleSubmit} className="modal__form">
+      <label className="modal__label" htmlFor="username">
+        Create a username
+      </label>
       <input
+        className="input modal__input"
         name="username"
         id="username"
         required
@@ -14,8 +17,11 @@ const Registration = ({ errors, user, setUser }) => {
         onChange={(e) => setUser({ ...user, username: e.target.value })}
       />
       {errors.username ? <p>{errors.username} </p> : null}
-      <label htmlFor="password">Create a password</label>
+      <label className="modal__label" htmlFor="password">
+        Create a password
+      </label>
       <input
+        className="input modal__input"
         name="password"
         id="password"
         required
@@ -26,7 +32,7 @@ const Registration = ({ errors, user, setUser }) => {
       <Button colorScheme="blue" type="submit">
         Create a new account
       </Button>
-    </>
+    </form>
   );
 };
 

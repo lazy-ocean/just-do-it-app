@@ -4,10 +4,14 @@
   padding: var(--space-s);
   border-radius: var(--border-radius);
   color: var(--color-txt);
-  width: 50%;
-  margin: var(--space-s);
+  margin: var(--space-s) 0;
   font-size: var(--font-main);
   font-family: var(--font);
+}
+
+.task__input {
+  width: 50%;
+  margin: var(--space-s);
 }
 
 .task__form {
@@ -17,4 +21,23 @@
 
 .task__form > button {
   margin-left: 0;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__form > button {
+  align-self: center;
+}
+
+.modal__label {
+  color: var(--color-txt);
+  font-size: var(--font-main);
+  margin-top: var(--space-xs);
+}
+
+.modal__input {
+  min-width: 40rem;
 }

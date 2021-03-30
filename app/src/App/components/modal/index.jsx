@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import Modal from "react-modal";
-import Form from "./Form";
+import Form from "../forms/Form";
+import { Button } from "../buttons/";
+import { VscChromeClose } from "react-icons/vsc";
+import "./modal.css";
 
 const ModalTxt = {
   login: {
@@ -21,9 +24,14 @@ const ModalWindow = (props) => {
       onRequestClose={handleModalState}
       className="modal"
       shouldCloseOnOverlayClick={true}
+      overlayClassName="modal__overlay"
     >
-      <button onClick={handleModalState}>Close Modal</button>
-      {header}
+      <div className="modal__header">
+        <h3 className="modal__h">{header}</h3>
+        <Button classn="task" onClick={handleModalState}>
+          <VscChromeClose />
+        </Button>
+      </div>
       <Form type={modalType} />
     </Modal>
   );
