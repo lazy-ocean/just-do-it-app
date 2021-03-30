@@ -1,72 +1,23 @@
 const Express = require("express");
 const path = require("path");
-const crypto = require("crypto");
 const session = require("express-session");
 
-class User {
-  constructor(username, password, tasks) {
-    this.username = username;
-    this.password = password;
-    this.tasks = tasks || [];
-  }
-  isGuest() {
-    return false;
-  }
-  getTasks() {
-    return this.tasks;
-  }
-  setTasks(t) {
-    this.tasks = t;
-  }
-}
+const secretKey = require("./secrets/secretKey");
+const users = require("./secrets/users");
+const Guest = require("./units/Guest.js");
 
-class Guest {
-  constructor() {
-    this.guest = true;
-    this.username = "Guest";
-    this.tasks = [
-      new Task("Learn Express.js"),
-      new Task("Buy groceries"),
-      new Task("Ace the interview"),
-    ];
-  }
-  isGuest() {
-    return this.guest;
-  }
-  getTasks() {
-    return this.tasks;
-  }
-  setTasks(t) {
-    this.tasks = t;
-  }
-}
-
-let id = 1;
-
-class Task {
-  constructor(content) {
-    this.content = content;
-    id += 1;
-    this.id = id;
-    this.completed = false;
-  }
-}
-
-const encrypt = (text) => {
-  const hash = crypto.createHmac("sha512", "salt");
-  hash.update(text);
-  return hash.digest("hex");
-};
-
-const users = [new User("1", encrypt("1")), new Guest()];
+const guestRouter = require("./routes/guest");
+const tasksRouter = require("./routes/tasks");
+const usersRouter = require("./routes/users");
+const sessionRouter = require("./routes/session");
 
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
 app.use(Express.json());
-app.use(Express.urlencoded());
+app.use(Express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "secret key",
+    secret: secretKey,
     resave: false,
     saveUninitialized: false,
   })
@@ -84,98 +35,10 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send("all good");
 });
-
-app.post("/session", (req, res) => {
-  const { username, password } = req.body;
-  let user = users.find((u) => u.username === username);
-  if (!user || user.password !== encrypt(password)) {
-    res.status(400).send({ commonErr: "Invalid nickname or password" });
-    return;
-  }
-  req.session.username = username;
-  res.send("Successfully logged in");
-});
-
-app.post("/guest", (req, res) => {
-  let user = new Guest();
-  req.session.username = user.username;
-  res.send("Successfully logged in");
-});
-
-app.get("/tasks", (req, res) => {
-  const user = res.locals.currentUser;
-  const { tasks, username } = user;
-  res.json({ tasksList: tasks, username });
-  console.log("Sent list of items");
-});
-
-app.post("/users", (req, res) => {
-  const errors = {};
-  const { username, password } = req.body;
-  if (!username) {
-    errors.username = "Username can't be blank";
-  } else {
-    const isUniq = !users.some((user) => user.username === username);
-    if (!isUniq) {
-      errors.username = "This username is already taken";
-    }
-  }
-  if (!password) errors.password = "Password can't be blank";
-  if (Object.keys(errors).length > 0) {
-    res.status(422).send(errors);
-    return;
-  }
-  const newUser = new User(username, encrypt(password));
-  users.push(newUser);
-  req.session.username = username;
-  res.send("Successfully registered");
-});
-
-app.post("/tasks", (req, res) => {
-  const user = res.locals.currentUser;
-  const tasks = user.getTasks();
-  const { content } = req.body;
-  if (!content) {
-    res.status(422);
-  } else {
-    const newTask = new Task(content);
-    user.setTasks([...tasks, newTask]);
-    res.json(newTask);
-  }
-});
-
-app.patch("/tasks/:id", (req, res) => {
-  const user = res.locals.currentUser;
-  const { content, completed } = req.body;
-  const errors = {};
-  if (!content) errors.title = "Can't be blank";
-  const tasks = user.getTasks();
-  if (Object.keys(errors).length === 0) {
-    user.setTasks(
-      tasks.map((t) => {
-        if (t.id.toString() === req.params.id) {
-          t.content = content;
-          t.completed = completed;
-        }
-        return t;
-      })
-    );
-    res.send("Successfully updated");
-  }
-  res.status(422);
-});
-
-app.delete("/tasks/:id", (req, res) => {
-  const user = res.locals.currentUser;
-  let tasks = user.getTasks();
-  user.setTasks(tasks.filter((t) => t.id.toString() !== req.params.id));
-  res.send("Successfully deleted");
-});
-
-app.delete("/session", (req, res) => {
-  req.session.destroy();
-  res.send("Session ended");
-});
+app.use("/guest", guestRouter);
+app.use("/tasks", tasksRouter);
+app.use("/users", usersRouter);
+app.use("/session", sessionRouter);
 
 const port = process.env.PORT || 5000;
 

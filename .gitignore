@@ -1,5 +1,6 @@
 /server/node_modules
 /server/user
+/server/secrets
 
 # dependencies
 /app/node_modules
