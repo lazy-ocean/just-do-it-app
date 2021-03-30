@@ -23,7 +23,6 @@ const Registration = ({ errors, user, setUser }) => {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
       {errors.password ? <p>{errors.password} </p> : null}
-      <p>Can contain a minimum of 6 letters and at least one number</p>
       <Button colorScheme="blue" type="submit">
         Create a new account
       </Button>

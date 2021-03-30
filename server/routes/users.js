@@ -15,7 +15,14 @@ router.post("/", (req, res) => {
       errors.username = "This username is already taken";
     }
   }
-  if (!password) errors.password = "Password can't be blank";
+  if (!password) {
+    errors.password = "Password can't be blank";
+  } else {
+    const regex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+    if (!regex.test(password))
+      errors.password =
+        "Password should contain minimum eight characters, at least one letter and one number";
+  }
   if (Object.keys(errors).length > 0) {
     res.status(422).send(errors);
     return;
