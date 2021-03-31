@@ -1,8 +1,9 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../buttons/";
+import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
 
 const Registration = ({ errors, user, setUser, handleSubmit }) => {
+  const [passwordVisible, togglePasswordVisible] = useState(false);
   return (
     <form onSubmit={handleSubmit} className="modal__form">
       <label className="modal__label" htmlFor="username">
@@ -24,16 +25,26 @@ const Registration = ({ errors, user, setUser, handleSubmit }) => {
       <label className="modal__label" htmlFor="password">
         Create a password
       </label>
-      <input
-        className={`input modal__input ${
-          errors.password && "modal__input--error"
-        }`}
-        name="password"
-        id="password"
-        required
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-      />
+      <div className="password">
+        <input
+          className={`input modal__input ${
+            errors.password && "modal__input--error"
+          }`}
+          name="password"
+          id="password"
+          type={passwordVisible ? "text" : "password"}
+          required
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
+        <i
+          className="password__eye"
+          onClick={() => togglePasswordVisible(!passwordVisible)}
+        >
+          {passwordVisible ? <RiEyeOffLine /> : <RiEyeLine />}
+        </i>
+      </div>
+
       {errors.password ? (
         <p className="modal__error">{errors.password} </p>
       ) : null}
