@@ -6,6 +6,7 @@
   background-color: var(--color-grey-light);
   padding: var(--space-s) var(--space-m);
   border-radius: var(--border-radius);
+  max-width: 46rem;
 }
 
 .modal__header {

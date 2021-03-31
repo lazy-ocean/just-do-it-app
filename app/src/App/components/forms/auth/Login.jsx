@@ -5,7 +5,7 @@ const Login = ({ errors, user, setUser, handleSubmit }) => {
   const { commonErr } = errors;
   return (
     <form onSubmit={handleSubmit} className="modal__form">
-      {commonErr ? <p>{commonErr}</p> : null}
+      {commonErr ? <p className="modal__error">{commonErr}</p> : null}
       <label htmlFor="username" className="modal__label">
         Login
       </label>
