@@ -6,6 +6,20 @@ import { Button } from "../buttons/";
 import { VscChromeClose } from "react-icons/vsc";
 import "./modal.css";
 
+const Redirect = ({ changeModal, modalType }) => {
+  return modalType === "register" ? (
+    <p className="modal__helper">
+      Already have an account?{" "}
+      <a onClick={() => changeModal("login")}>Log in</a>
+    </p>
+  ) : (
+    <p className="modal__helper">
+      Don&apos;t have an account?{" "}
+      <a onClick={() => changeModal("register")}>Sign up</a>
+    </p>
+  );
+};
+
 const ModalTxt = {
   login: {
     header: "Welcome back!",
@@ -16,8 +30,9 @@ const ModalTxt = {
 };
 
 const ModalWindow = (props) => {
-  const { modalType, modal, handleModalState } = props;
+  const { modalType, modal, handleModalState, changeModal } = props;
   const { header } = ModalTxt[modalType];
+
   return (
     <Modal
       isOpen={modal}
@@ -32,6 +47,7 @@ const ModalWindow = (props) => {
           <VscChromeClose />
         </Button>
       </div>
+      <Redirect changeModal={changeModal} modalType={modalType} />
       <Form type={modalType} />
     </Modal>
   );

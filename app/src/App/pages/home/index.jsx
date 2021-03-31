@@ -42,6 +42,7 @@ const Home = () => {
           modalType={modalType}
           handleModalState={handleModalState}
           modal={modal}
+          changeModal={changeModal}
         />
         <img src="../../img/cool_girl.png" alt="cool girl coding" />
         <div className="home__main">

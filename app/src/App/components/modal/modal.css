@@ -25,3 +25,12 @@
   background-color: rgba(0, 0, 0, 0.527);
   backdrop-filter: blur(3px);
 }
+
+.modal__helper {
+  font-size: var(--font-main);
+  color: var(--color-txt);
+}
+
+.modal__helper > a {
+  cursor: pointer;
+}
