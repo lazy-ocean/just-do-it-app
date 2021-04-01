@@ -36,9 +36,16 @@ app.get("/", (req, res) => {
   res.send("all good");
 });
 app.use("/guest", guestRouter);
-app.use("/tasks", tasksRouter);
+app.use("/api/tasks", tasksRouter);
 app.use("/users", usersRouter);
 app.use("/session", sessionRouter);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(Express.static(path.join(__dirname, "app/build")));
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "app/build", "index.html"));
+  });
+}
 
 const port = process.env.PORT || 5000;
 

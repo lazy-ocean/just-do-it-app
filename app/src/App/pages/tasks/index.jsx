@@ -26,7 +26,7 @@ const Tasks = ({ theme, changeTheme }) => {
 
   const getTasks = async () => {
     try {
-      const t = await axios.get("/tasks");
+      const t = await axios.get("/api/tasks");
       const { tasksList, username } = t.data;
       setTasks(tasksList);
       setUser(username);

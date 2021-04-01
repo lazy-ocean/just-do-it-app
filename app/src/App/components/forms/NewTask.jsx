@@ -11,7 +11,7 @@ const NewTask = ({ tasks, setTasks }) => {
     e.preventDefault();
     const t = { content: newTask };
     axios
-      .post("/tasks", t)
+      .post("/api/tasks", t)
       .then((response) => {
         setTasks([...tasks, response.data]);
         setNewTask("");

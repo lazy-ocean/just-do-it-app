@@ -9,7 +9,7 @@ import { VscChromeClose } from "react-icons/vsc";
 const TasksList = ({ tasks, setTasks, getTasks, category }) => {
   const handleDelete = (id) => {
     axios
-      .delete(`/tasks/${id}`)
+      .delete(`/api/tasks/${id}`)
       .then(() => {
         const newTasks = tasks.filter((t) => t.id !== id);
         setTasks(newTasks);
@@ -56,7 +56,7 @@ const Task = ({ id, content, completed, handleDelete, getTasks }) => {
   const [completedTask, setCompletedTask] = useState(completed);
   const handleEditing = (value) => {
     const edited = { content: value, completed: completedTask };
-    axios.patch(`/tasks/${id}`, edited).catch(() => {});
+    axios.patch(`/api/tasks/${id}`, edited).catch(() => {});
   };
 
   useEffect(() => {
