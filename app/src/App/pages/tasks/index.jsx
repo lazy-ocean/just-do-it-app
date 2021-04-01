@@ -59,7 +59,9 @@ const Tasks = () => {
         <h3>Hi {user}!</h3>
         <NewTask setTasks={setTasks} tasks={tasks} />
         {user === "Guest" ? (
-          <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
+          <p className="warning">
+            Mind that your changes won&apos;t be saved in Guest mode
+          </p>
         ) : null}
         <div className="category">
           <h3 className="category__name">Active tasks 😤</h3>

@@ -23,3 +23,8 @@ header {
   font-weight: 600;
   color: var(--color-txt);
 }
+
+.nofocus:focus {
+  outline: none;
+  box-shadow: none;
+}

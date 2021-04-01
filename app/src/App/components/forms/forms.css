@@ -10,7 +10,7 @@
 
 .task__input {
   width: 50%;
-  margin: var(--space-s);
+  margin: var(--space-s) var(--space-s) var(--space-s) 0;
 }
 
 .task__form {

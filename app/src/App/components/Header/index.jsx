@@ -7,7 +7,9 @@ const Header = ({ children }) => {
     <header>
       <div className="header__txt">
         <h3 className="header__h">
-          <Link to="/">Just Do It App</Link>{" "}
+          <Link to="/" className="link nofocus">
+            Just Do It App
+          </Link>{" "}
         </h3>
       </div>
       <div className="header__buttons">{children}</div>

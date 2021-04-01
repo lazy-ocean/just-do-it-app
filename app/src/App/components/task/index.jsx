@@ -33,9 +33,20 @@ const TasksList = ({ tasks, setTasks, getTasks, category }) => {
   ) : (
     <div>
       {category === "active" ? (
-        <h2>There&apos;re no tasks for you, good job!</h2>
+        <h2 className="message">
+          There&apos;re no tasks for you, good job!{" "}
+          <a
+            href="https://randomcatvideo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link link--emphasized"
+          >
+            Here
+          </a>{" "}
+          is a random cat video.
+        </h2>
       ) : (
-        <h2>You can do it!</h2>
+        <h2 className="message">You can do it!</h2>
       )}
     </div>
   );

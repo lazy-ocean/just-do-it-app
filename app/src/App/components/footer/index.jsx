@@ -8,7 +8,12 @@ const Footer = () => {
         Made with{" "}
         <img className="heart" src="../../img/heart.svg" alt="heart" />
         &nbsp;in 2021 by&nbsp;
-        <a className="link" href="https://lazy-ocean.github.io/">
+        <a
+          className="link nofocus"
+          href="https://lazy-ocean.github.io/"
+          rel="noreferrer"
+          target="_blank"
+        >
           Vladlena Panchenko.
         </a>
       </p>

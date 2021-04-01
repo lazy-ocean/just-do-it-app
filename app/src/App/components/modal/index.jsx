@@ -10,12 +10,19 @@ const Redirect = ({ changeModal, modalType }) => {
   return modalType === "register" ? (
     <p className="modal__helper">
       Already have an account?{" "}
-      <a onClick={() => changeModal("login")}>Log in</a>
+      <a onClick={() => changeModal("login")} className="link link--emphasized">
+        Log in
+      </a>
     </p>
   ) : (
     <p className="modal__helper">
       Don&apos;t have an account?{" "}
-      <a onClick={() => changeModal("register")}>Sign up</a>
+      <a
+        onClick={() => changeModal("register")}
+        className="link link--emphasized"
+      >
+        Sign up
+      </a>
     </p>
   );
 };

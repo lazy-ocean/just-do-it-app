@@ -30,8 +30,3 @@
   font-size: var(--font-main);
   color: var(--color-txt);
 }
-
-.modal__helper > a {
-  cursor: pointer;
-  font-weight: 600;
-}
