@@ -7,7 +7,7 @@ import { AuthButtonGroup, Button } from "../../components/buttons";
 import Footer from "../../components/footer/";
 import "./home.css";
 
-const Home = () => {
+const Home = ({ theme, changeTheme }) => {
   const [modal, toggleModal] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [modalType, changeModal] = useState("login");
@@ -34,7 +34,7 @@ const Home = () => {
     <Redirect to="/tasks" />
   ) : (
     <>
-      <Header>
+      <Header theme={theme} changeTheme={changeTheme}>
         <AuthButtonGroup manageModal={manageModal} />
       </Header>
       <main className="home__container">
@@ -44,12 +44,16 @@ const Home = () => {
           modal={modal}
           changeModal={changeModal}
         />
-        <img src="../../img/cool_girl.png" alt="cool girl coding" />
+        <img
+          src="../../img/cool_girl.png"
+          alt="cool girl coding"
+          className="home__img"
+        />
         <div className="home__main">
           <h1 className="home__h">
             Get things done.
             <br />
-            Manage your tasks and achieve more.
+            Manage your tasks and&nbsp;achieve&nbsp;more.
           </h1>
           <div className="home__buttons">
             <AuthButtonGroup manageModal={manageModal} />

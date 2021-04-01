@@ -3,10 +3,11 @@
   display: flex;
   align-items: center;
   color: var(--color-txt);
-  background-color: var(--color-grey-md);
+  background-color: var(--color-bg-md);
   padding: var(--space-s);
-  margin: var(--space-xs) var(--space-s) var(--space-xs) var(--space-s);
+  margin: var(--space-xs) 0;
   border-radius: var(--border-radius);
+  transition: background-color 0.4s;
 }
 
 .easy-edit-inline-wrapper {
@@ -16,10 +17,10 @@
 
 .easy-edit-wrapper,
 .easy-edit-component-wrapper > input {
-  background-color: var(--color-grey-md);
+  background-color: var(--color-bg-md);
   position: relative;
   vertical-align: middle;
-  margin-left: var(--space-s);
+  margin: 0 var(--space-xs);
   color: var(--color-txt);
   font-family: var(--font);
   font-size: var(--font-main);
@@ -56,12 +57,14 @@
   vertical-align: middle;
   border: 1px solid var(--color-txt);
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 .cbx .check {
+  cursor: pointer;
   position: absolute;
   z-index: 1;
-  top: 4px;
-  left: 3px;
+  top: 0.4rem;
+  left: 0.3rem;
   fill: none;
   stroke: var(--color-main);
   stroke-width: 2;
@@ -89,7 +92,7 @@
 .cbx div:after {
   content: "";
   position: absolute;
-  top: 10px;
+  top: 1rem;
   left: 0;
   height: 2px;
   width: 100%;
@@ -127,5 +130,24 @@
 @keyframes check {
   50% {
     transform: scale(1.2);
+  }
+}
+
+.message {
+  font-size: var(--font-main);
+  font-weight: 100;
+}
+
+.message > a {
+  color: var(--color-main);
+}
+
+@media only screen and (max-width: 500px) {
+  .easy-edit-button-wrapper {
+    display: flex;
+  }
+
+  .task__container {
+    padding: var(--space-xs);
   }
 }

@@ -48,7 +48,7 @@ const Registration = ({ errors, user, setUser, handleSubmit }) => {
       {errors.password ? (
         <p className="modal__error">{errors.password} </p>
       ) : null}
-      <Button colorScheme="blue" type="submit">
+      <Button type="submit" classn="submit">
         Create a new account
       </Button>
     </form>

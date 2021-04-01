@@ -14,22 +14,22 @@
 }
 
 .btn:hover {
-  color: var(--color-txt);
+  color: var(--color-txt-light);
   background-color: var(--color-main);
 }
 
 .btn--login {
-  border: 2px solid var(--color-bg-dark);
+  border: none;
 }
 
 .btn--login:hover {
   color: var(--color-txt);
   background-color: inherit;
-  border: 2px solid var(--color-main);
+  box-shadow: 0 0 0 2pt var(--color-main);
 }
 
 .btn--guest {
-  color: var(--color-txt);
+  color: var(--color-txt-light);
   background-color: var(--color-main);
   font-weight: 600;
 }
@@ -47,5 +47,35 @@
 
 .btn--task {
   background-color: transparent;
-  margin-left: var(--space-s);
+}
+
+.btn--logout--icon {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .btn {
+    margin: var(--space-xxs);
+  }
+  .btn--task {
+    margin-left: 0;
+  }
+  .btn--action {
+    margin-left: auto;
+  }
+  .btn--logout {
+    display: none;
+  }
+  .btn--logout--icon {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .btn--logout {
+    display: none;
+  }
+  .btn--logout--icon {
+    display: block;
+  }
 }

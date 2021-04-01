@@ -14,12 +14,29 @@ header {
   align-items: center;
 }
 
-.header__buttons {
+.header__switcher {
   margin-left: auto;
+  margin-right: var(--space-xs);
+  color: var(--color-main);
+  margin-top: var(--space-xs);
+  font-size: 3rem;
+  cursor: pointer;
+  align-self: center;
 }
 
 .header__h {
   font-size: 3rem;
   font-weight: 600;
   color: var(--color-txt);
+}
+
+.nofocus:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 500px) {
+  header .button__group {
+    display: none;
+  }
 }

@@ -7,9 +7,10 @@ import Header from "../../components/Header";
 import TasksList from "../../components/task";
 import { Button } from "../../components/buttons";
 import Footer from "../../components/footer";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import "./tasks.css";
 
-const Tasks = () => {
+const Tasks = ({ theme, changeTheme }) => {
   const [tasks, setTasks] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState("");
@@ -52,14 +53,22 @@ const Tasks = () => {
     <Redirect to="/" />
   ) : (
     <>
-      <Header>
-        <Button onClick={handleLogout}>Log out</Button>
+      <Header theme={theme} changeTheme={changeTheme}>
+        <Button onClick={handleLogout} classn="logout">
+          Log out
+        </Button>
+        <Button onClick={handleLogout} classn="logout--icon btn--action">
+          <RiLogoutBoxRLine />
+        </Button>
       </Header>
       <main className="tasks__container">
         <h3>Hi {user}!</h3>
         <NewTask setTasks={setTasks} tasks={tasks} />
         {user === "Guest" ? (
-          <p>Mind that your added tasks won&apos;t be saved in Guest mode</p>
+          <p className="warning">
+            Mind that your changes in Guest mode will be saved only for the
+            current session
+          </p>
         ) : null}
         <div className="category">
           <h3 className="category__name">Active tasks 😤</h3>

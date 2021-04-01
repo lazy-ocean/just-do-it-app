@@ -1,5 +1,5 @@
 .input {
-  background-color: var(--color-grey-md);
+  background-color: var(--color-bg-md);
   border: none;
   padding: var(--space-s);
   border-radius: var(--border-radius);
@@ -10,7 +10,7 @@
 
 .task__input {
   width: 50%;
-  margin: var(--space-s);
+  margin: var(--space-s) var(--space-s) var(--space-s) 0;
 }
 
 .task__form {
@@ -39,12 +39,13 @@
 }
 
 .modal__input {
-  min-width: 40rem;
+  width: 40rem;
   margin: var(--space-s) 0 var(--space-xs) 0;
 }
 
 .modal__input--error {
   box-shadow: 0 0 0 2pt var(--color-danger);
+  transition: box-shadow 0.4s;
 }
 
 .modal__error {
@@ -60,9 +61,18 @@
 
 .password__eye {
   position: absolute;
-  top: 28px;
-  right: 15px;
+  top: 2.8rem;
+  right: 1.5rem;
   color: var(--color-main);
   font-size: 2.5rem;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .task__input {
+    width: 100%;
+  }
+  .modal__input {
+    width: 30rem;
+  }
 }

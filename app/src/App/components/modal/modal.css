@@ -3,7 +3,7 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--color-grey-light);
+  background-color: var(--color-bg-light);
   padding: var(--space-s) var(--space-m);
   border-radius: var(--border-radius);
   max-width: 46rem;
@@ -29,9 +29,4 @@
 .modal__helper {
   font-size: var(--font-main);
   color: var(--color-txt);
-}
-
-.modal__helper > a {
-  cursor: pointer;
-  font-weight: 600;
 }
