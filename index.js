@@ -2,14 +2,14 @@ const Express = require("express");
 const path = require("path");
 const session = require("express-session");
 
-const secretKey = require("./secrets/secretKey");
-const users = require("./secrets/users");
-const Guest = require("./units/Guest.js");
+const secretKey = require("./server/secrets/secretKey");
+const users = require("./server/secrets/users");
+const Guest = require("./server/units/Guest.js");
 
-const guestRouter = require("./routes/guest");
-const tasksRouter = require("./routes/tasks");
-const usersRouter = require("./routes/users");
-const sessionRouter = require("./routes/session");
+const guestRouter = require("./server/routes/guest");
+const tasksRouter = require("./server/routes/tasks");
+const usersRouter = require("./server/routes/users");
+const sessionRouter = require("./server/routes/session");
 
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
