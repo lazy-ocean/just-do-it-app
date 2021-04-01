@@ -41,6 +41,18 @@ html {
   box-sizing: border-box;
 }
 
+@media only screen and (max-width: 750px) {
+  :root {
+    --font-h1: 3rem;
+    --space-xl: 4rem;
+    --space-l: 2rem;
+  }
+
+  html {
+    font-size: 50%;
+  }
+}
+
 * {
   box-sizing: inherit;
 }
@@ -50,7 +62,7 @@ body {
   font-family: var(--font);
   margin: 0 auto;
   background-color: var(--color-bg);
-  transition: all 0.4s;
+  transition: all 0.4s linear;
 }
 
 #root {

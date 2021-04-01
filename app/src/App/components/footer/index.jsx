@@ -14,7 +14,7 @@ const Footer = () => {
           rel="noreferrer"
           target="_blank"
         >
-          Vladlena Panchenko.
+          Vladlena&nbsp;Panchenko.
         </a>
       </p>
     </footer>

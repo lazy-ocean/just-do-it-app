@@ -34,3 +34,9 @@ header {
   outline: none;
   box-shadow: none;
 }
+
+@media only screen and (max-width: 500px) {
+  header .button__group {
+    display: none;
+  }
+}

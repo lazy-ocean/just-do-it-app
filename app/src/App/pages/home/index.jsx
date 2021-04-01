@@ -44,12 +44,16 @@ const Home = ({ theme, changeTheme }) => {
           modal={modal}
           changeModal={changeModal}
         />
-        <img src="../../img/cool_girl.png" alt="cool girl coding" />
+        <img
+          src="../../img/cool_girl.png"
+          alt="cool girl coding"
+          className="home__img"
+        />
         <div className="home__main">
           <h1 className="home__h">
             Get things done.
             <br />
-            Manage your tasks and achieve more.
+            Manage your tasks and&nbsp;achieve&nbsp;more.
           </h1>
           <div className="home__buttons">
             <AuthButtonGroup manageModal={manageModal} />

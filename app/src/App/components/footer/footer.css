@@ -3,6 +3,7 @@ footer {
   padding: var(--space-m);
   justify-content: center;
   margin-top: auto;
+  text-align: center;
 }
 
 .footer__txt {

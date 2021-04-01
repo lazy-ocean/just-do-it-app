@@ -47,5 +47,35 @@
 
 .btn--task {
   background-color: transparent;
-  margin-left: var(--space-s);
+}
+
+.btn--logout--icon {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .btn {
+    margin: var(--space-xxs);
+  }
+  .btn--task {
+    margin-left: 0;
+  }
+  .btn--action {
+    margin-left: auto;
+  }
+  .btn--logout {
+    display: none;
+  }
+  .btn--logout--icon {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .btn--logout {
+    display: none;
+  }
+  .btn--logout--icon {
+    display: block;
+  }
 }

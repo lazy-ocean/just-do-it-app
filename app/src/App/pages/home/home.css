@@ -22,3 +22,19 @@
   flex-direction: column;
   align-items: flex-end;
 }
+
+.home__img {
+  max-width: 40%;
+}
+
+@media only screen and (max-width: 500px) {
+  .home__container {
+    flex-direction: column;
+  }
+  .home__main {
+    align-items: center;
+  }
+  .home__h {
+    text-align: center;
+  }
+}

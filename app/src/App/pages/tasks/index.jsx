@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import TasksList from "../../components/task";
 import { Button } from "../../components/buttons";
 import Footer from "../../components/footer";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import "./tasks.css";
 
 const Tasks = ({ theme, changeTheme }) => {
@@ -53,7 +54,12 @@ const Tasks = ({ theme, changeTheme }) => {
   ) : (
     <>
       <Header theme={theme} changeTheme={changeTheme}>
-        <Button onClick={handleLogout}>Log out</Button>
+        <Button onClick={handleLogout} classn="logout">
+          Log out
+        </Button>
+        <Button onClick={handleLogout} classn="logout--icon btn--action">
+          <RiLogoutBoxRLine />
+        </Button>
       </Header>
       <main className="tasks__container">
         <h3>Hi {user}!</h3>
