@@ -31,14 +31,20 @@ const Form = ({ type }) => {
 
   return redirect ? (
     <Redirect to="/tasks" />
+  ) : type === "login" ? (
+    <Login
+      errors={errors}
+      user={user}
+      setUser={setUser}
+      handleSubmit={handleSubmit}
+    />
   ) : (
-    <form onSubmit={handleSubmit}>
-      {type === "login" ? (
-        <Login errors={errors} user={user} setUser={setUser} />
-      ) : (
-        <Registration errors={errors} user={user} setUser={setUser} />
-      )}
-    </form>
+    <Registration
+      errors={errors}
+      user={user}
+      setUser={setUser}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Modal from "../../components/Modal";
+import Modal from "../../components/modal/";
 import Header from "../../components/Header";
 import { AuthButtonGroup, Button } from "../../components/buttons";
 import Footer from "../../components/footer/";
@@ -42,6 +42,7 @@ const Home = () => {
           modalType={modalType}
           handleModalState={handleModalState}
           modal={modal}
+          changeModal={changeModal}
         />
         <img src="../../img/cool_girl.png" alt="cool girl coding" />
         <div className="home__main">
