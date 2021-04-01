@@ -41,7 +41,9 @@ const Login = ({ errors, user, setUser, handleSubmit }) => {
         </i>
       </div>
 
-      <Button type="submit">Log in</Button>
+      <Button type="submit" classn="submit">
+        Log in
+      </Button>
     </form>
   );
 };

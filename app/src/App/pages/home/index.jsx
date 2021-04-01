@@ -7,7 +7,7 @@ import { AuthButtonGroup, Button } from "../../components/buttons";
 import Footer from "../../components/footer/";
 import "./home.css";
 
-const Home = () => {
+const Home = ({ theme, changeTheme }) => {
   const [modal, toggleModal] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [modalType, changeModal] = useState("login");
@@ -34,7 +34,7 @@ const Home = () => {
     <Redirect to="/tasks" />
   ) : (
     <>
-      <Header>
+      <Header theme={theme} changeTheme={changeTheme}>
         <AuthButtonGroup manageModal={manageModal} />
       </Header>
       <main className="home__container">

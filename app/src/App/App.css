@@ -5,14 +5,9 @@
   --space-s: 1.5rem;
   --space-xs: 1rem;
   --space-xxs: 0.5rem;
-
-  --color-bg-dark: #20262c;
-  --color-grey-md: #2d353b;
-  --color-grey-light: #565c61;
-  --color-main-dark: #006166;
   --color-main: #00adb5;
-  --color-txt: #eeeeee;
-  --color-txt-inactive: #999999;
+  --color-main-dark: #006166;
+  --color-txt-light: #eeeeee;
   --color-danger: #fc5475;
 
   --font-h1: 4rem;
@@ -23,6 +18,22 @@
 
   --border-radius: 5px;
   --font: "Raleway", sans-serif;
+}
+
+.theme--dark {
+  --color-bg: #20262c;
+  --color-bg-md: #2d353b;
+  --color-bg-light: #565c61;
+  --color-txt: #eeeeee;
+  --color-txt-inactive: #999999;
+}
+
+.theme--light {
+  --color-bg: #ffffff;
+  --color-bg-md: #e7e7e7;
+  --color-bg-light: #f8f8f8;
+  --color-txt: #505050;
+  --color-txt-inactive: #b4b4b4;
 }
 
 html {
@@ -38,7 +49,8 @@ body {
   max-width: 1466px;
   font-family: var(--font);
   margin: 0 auto;
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg);
+  transition: all 0.4s;
 }
 
 #root {

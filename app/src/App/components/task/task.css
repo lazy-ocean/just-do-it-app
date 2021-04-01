@@ -3,10 +3,11 @@
   display: flex;
   align-items: center;
   color: var(--color-txt);
-  background-color: var(--color-grey-md);
+  background-color: var(--color-bg-md);
   padding: var(--space-s);
   margin: var(--space-xs) 0;
   border-radius: var(--border-radius);
+  transition: background-color 0.4s;
 }
 
 .easy-edit-inline-wrapper {
@@ -16,7 +17,7 @@
 
 .easy-edit-wrapper,
 .easy-edit-component-wrapper > input {
-  background-color: var(--color-grey-md);
+  background-color: var(--color-bg-md);
   position: relative;
   vertical-align: middle;
   margin-left: var(--space-s);

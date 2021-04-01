@@ -9,7 +9,7 @@ import { Button } from "../../components/buttons";
 import Footer from "../../components/footer";
 import "./tasks.css";
 
-const Tasks = () => {
+const Tasks = ({ theme, changeTheme }) => {
   const [tasks, setTasks] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState("");
@@ -52,7 +52,7 @@ const Tasks = () => {
     <Redirect to="/" />
   ) : (
     <>
-      <Header>
+      <Header theme={theme} changeTheme={changeTheme}>
         <Button onClick={handleLogout}>Log out</Button>
       </Header>
       <main className="tasks__container">
@@ -60,7 +60,8 @@ const Tasks = () => {
         <NewTask setTasks={setTasks} tasks={tasks} />
         {user === "Guest" ? (
           <p className="warning">
-            Mind that your changes won&apos;t be saved in Guest mode
+            Mind that your changes in Guest mode will be saved only for the
+            current session
           </p>
         ) : null}
         <div className="category">
