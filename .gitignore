@@ -1,6 +1,7 @@
 /server/node_modules
 /server/user
-/server/secrets
+/server/secrets/secretKey.js
+/server/secrets/salt.js
 
 # dependencies
 /node_modules
