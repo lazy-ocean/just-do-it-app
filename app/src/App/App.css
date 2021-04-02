@@ -54,8 +54,17 @@ html {
 }
 
 @media only screen and (max-width: 400px) {
-  html {
-    font-size: 40%;
+  :root {
+    --font-h3: 2rem;
+    --space-xl: 4rem;
+    --space-l: 2rem;
+    --space-m: 2rem;
+    --space-s: 1rem;
+    --space-xs: 0.9rem;
+    --space-xxs: 0.5rem;
+  }
+  #root {
+    height: 90vh;
   }
 }
 
