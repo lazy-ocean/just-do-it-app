@@ -1,8 +1,7 @@
 footer {
   display: flex;
-  padding: var(--space-m);
+  padding: 0 var(--space-m) var(--space-m);
   justify-content: center;
-  margin-top: auto;
   text-align: center;
 }
 

@@ -1,5 +1,5 @@
 .home__container {
-  margin: var(--space-xl) auto;
+  /*   margin: var(--space-xl) auto; */
   display: flex;
   align-items: center;
   justify-content: center;
