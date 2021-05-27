@@ -16,7 +16,7 @@ export const AuthButtonGroup = ({ manageModal }) => {
 
 export const Button = ({ children, onClick, classn }) => {
   return (
-    <button onClick={onClick} className={`btn btn--${classn}`}>
+    <button onClick={onClick} className={`btn btn--${classn}`} data-cy={`btn-${classn}`}>
       {children}
     </button>
   );

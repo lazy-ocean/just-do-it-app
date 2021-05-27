@@ -17,10 +17,7 @@ const Redirect = ({ changeModal, modalType }) => {
   ) : (
     <p className="modal__helper">
       Don&apos;t have an account?{" "}
-      <a
-        onClick={() => changeModal("register")}
-        className="link link--emphasized"
-      >
+      <a onClick={() => changeModal("register")} className="link link--emphasized">
         Sign up
       </a>
     </p>
@@ -48,7 +45,7 @@ const ModalWindow = (props) => {
       shouldCloseOnOverlayClick={true}
       overlayClassName="modal__overlay"
     >
-      <div className="modal__header">
+      <div className="modal__header" data-cy={`modal-${modalType}`}>
         <h3 className="modal__h">{header}</h3>
         <Button classn="task" onClick={handleModalState}>
           <VscChromeClose />
