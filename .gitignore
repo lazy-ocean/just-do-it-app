@@ -9,7 +9,6 @@
 
 # testing
 /app/coverage
-/app/cypress/
 
 # production
 /app/build
