@@ -48,4 +48,10 @@ $ npm run start
 
 4. Your app is served at http://localhost:3000/
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Antu_dialog-warning.svg/1200px-Antu_dialog-warning.svg.png" alt="Just Do It Logo" title="warning" align="left" height="50" />Some files are hidden as secrets: session secret key, salt for password encryption and users' storage.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Antu_dialog-warning.svg/1200px-Antu_dialog-warning.svg.png" alt="Just Do It Logo" title="warning" align="left" height="30" />Some files are hidden as secrets: session secret key, salt for password encryption and users' storage.  
+If you're running a local version, add this params to .env file to the root of your project:
+
+```
+echo 'SECRET_KEY=<your key>' >> .env
+echo 'SALT=<your key>' >> .env
+```

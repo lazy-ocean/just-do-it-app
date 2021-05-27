@@ -1,8 +1,8 @@
+require("dotenv").config();
 const Express = require("express");
 const path = require("path");
 const session = require("express-session");
 
-const secretKey = require("./server/secrets/secretKey");
 const users = require("./server/secrets/users");
 const Guest = require("./server/units/Guest.js");
 
@@ -10,6 +10,8 @@ const guestRouter = require("./server/routes/guest");
 const tasksRouter = require("./server/routes/tasks");
 const usersRouter = require("./server/routes/users");
 const sessionRouter = require("./server/routes/session");
+
+const secretKey = process.env.SECRET_KEY;
 
 const app = new Express();
 app.use(Express.static(path.join(__dirname, "app/build")));
