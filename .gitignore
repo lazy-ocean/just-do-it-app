@@ -1,20 +1,17 @@
-/server/node_modules
-/server/user
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
-/app/node_modules
-/app/.pnp
+/.pnp
 .pnp.js
 
 # testing
-/app/coverage
+/coverage
 
 # production
-/app/build
+/build
 
 # misc
-.env
 .DS_Store
 .env.local
 .env.development.local

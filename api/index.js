@@ -14,7 +14,6 @@ const sessionRouter = require("./server/routes/session");
 const secretKey = process.env.SECRET_KEY;
 
 const app = new Express();
-app.use(Express.static(path.join(__dirname, "app/build")));
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 app.use(
@@ -25,7 +24,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
-  if (req.session?.username) {
+  if (req.session.username) {
     const { username } = req.session;
     res.locals.currentUser = users.find((user) => user.username === username);
   } else {
@@ -42,15 +41,10 @@ app.use("/api/tasks", tasksRouter);
 app.use("/users", usersRouter);
 app.use("/session", sessionRouter);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(Express.static(path.join(__dirname, "app/build")));
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "app/build", "index.html"));
-  });
-}
-
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log("server started on port " + port);
 });
+
+module.exports = app;
