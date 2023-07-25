@@ -23,7 +23,7 @@ const Home = ({ theme, changeTheme }) => {
 
   const manageGuest = () => {
     axios
-      .post("/guest")
+      .get("/guest")
       .then(() => {
         setRedirect(true);
       })

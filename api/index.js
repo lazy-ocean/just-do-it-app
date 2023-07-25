@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send("all good");
 });
+
 app.use("/guest", guestRouter);
 app.use("/api/tasks", tasksRouter);
 app.use("/users", usersRouter);

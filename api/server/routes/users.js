@@ -4,7 +4,7 @@ const users = require("../secrets/users");
 const User = require("../units/User");
 const encrypt = require("../secrets/encryption");
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
   const errors = {};
   const { username, password } = req.body;
   if (!username) {

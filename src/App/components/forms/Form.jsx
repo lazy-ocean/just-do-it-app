@@ -20,7 +20,7 @@ const Form = ({ type }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(path, user)
+      .get(path, user)
       .then(() => {
         setRedirect(true);
       })

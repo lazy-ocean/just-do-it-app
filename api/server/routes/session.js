@@ -3,7 +3,7 @@ const router = express.Router();
 const users = require("../secrets/users");
 const encrypt = require("../secrets/encryption");
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
   const { username, password } = req.body;
   let user = users.find((u) => u.username === username);
   if (!user || user.password !== encrypt(password)) {
