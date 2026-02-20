@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview",
     "cypress:open": "cypress open --project src",
     "cypress:run": "cypress run --project src"

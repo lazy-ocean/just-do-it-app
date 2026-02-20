@@ -15,28 +15,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/guest",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/session",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/users",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/(.*\\.(js|css|ico|png|jpg|svg|json))",
-      "dest": "/app/build/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/app/build/index.html"
+      "dest": "/index.js"
     }
   ]
 }

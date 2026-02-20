@@ -34,20 +34,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("all good");
-});
 app.use("/guest", guestRouter);
 app.use("/api/tasks", tasksRouter);
 app.use("/users", usersRouter);
 app.use("/session", sessionRouter);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(Express.static(path.join(__dirname, "app/build")));
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "app/build", "index.html"));
-  });
-}
+// Serve static files from the React app
+app.use(Express.static(path.join(__dirname, "app/build")));
+
+// Serve React app for all non-API routes (SPA routing)
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "app/build", "index.html"));
+});
 
 const port = process.env.PORT || 4000;
 module.exports = app;
