@@ -50,7 +50,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const port = process.env.PORT || 4000;
-
-app.listen(port, () => {
-  console.log("server started on port " + port);
-});
+module.exports = app;
