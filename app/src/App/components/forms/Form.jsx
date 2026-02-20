@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Login from "./auth/Login";
 import Registration from "./auth/Registration";
 
@@ -11,9 +11,9 @@ const paths = {
 };
 
 const Form = ({ type }) => {
+  const history = useHistory();
   const defUser = { username: "", password: "" };
   const [user, setUser] = useState(defUser);
-  const [redirect, setRedirect] = useState(false);
   const [errors, setErrors] = useState([]);
   const path = paths[type];
 
@@ -22,16 +22,14 @@ const Form = ({ type }) => {
     axios
       .post(path, user)
       .then(() => {
-        setRedirect(true);
+        history.push("/tasks");
       })
       .catch((e) => {
         setErrors(e.response.data);
       });
   };
 
-  return redirect ? (
-    <Redirect to="/tasks" />
-  ) : type === "login" ? (
+  return type === "login" ? (
     <Login
       errors={errors}
       user={user}

@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "heroku-postbuild": "cd app && npm install --only=dev && npm install && npm run build"
+    "dev:server": "node index.js",
+    "dev:client": "cd app && yarn dev",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\"",
+    "build": "cd app && yarn build"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +19,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

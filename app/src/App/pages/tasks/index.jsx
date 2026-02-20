@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import NewTask from "../../components/forms/NewTask";
 import Header from "../../components/Header";
@@ -11,8 +11,8 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import "./tasks.css";
 
 const Tasks = ({ theme, changeTheme }) => {
+  const history = useHistory();
   const [tasks, setTasks] = useState([]);
-  const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState("");
 
   const categorizedTasks = tasks.reduce(
@@ -44,14 +44,12 @@ const Tasks = ({ theme, changeTheme }) => {
     axios
       .delete("/session")
       .then(() => {
-        setRedirect(true);
+        history.push("/");
       })
       .catch(() => {});
   };
 
-  return redirect ? (
-    <Redirect to="/" />
-  ) : (
+  return (
     <>
       <Header theme={theme} changeTheme={changeTheme}>
         <Button onClick={handleLogout} classn="logout">

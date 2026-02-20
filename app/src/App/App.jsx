@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/home/";
-import Tasks from "./pages/tasks/";
+import Home from "./pages/home";
+import Tasks from "./pages/tasks";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
@@ -35,19 +35,14 @@ const App = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const App = () => (
-    <Switch>
-      <Route exact path="/">
-        <Home changeTheme={changeTheme} theme={theme} />
-      </Route>
-      <Route path="/tasks">
-        <Tasks changeTheme={changeTheme} theme={theme} />
-      </Route>
-    </Switch>
-  );
   return (
     <Switch>
-      <App />
+      <Route exact path="/" key="home">
+        <Home changeTheme={changeTheme} theme={theme} />
+      </Route>
+      <Route path="/tasks" key="tasks">
+        <Tasks changeTheme={changeTheme} theme={theme} />
+      </Route>
     </Switch>
   );
 };

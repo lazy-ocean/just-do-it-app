@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Modal from "../../components/modal/";
 import Header from "../../components/Header";
 import { AuthButtonGroup, Button } from "../../components/buttons";
@@ -8,8 +8,8 @@ import Footer from "../../components/footer/";
 import "./home.css";
 
 const Home = ({ theme, changeTheme }) => {
+  const history = useHistory();
   const [modal, toggleModal] = useState(false);
-  const [redirect, setRedirect] = useState(false);
   const [modalType, changeModal] = useState("login");
 
   const handleModalState = () => {
@@ -21,18 +21,16 @@ const Home = ({ theme, changeTheme }) => {
     handleModalState();
   };
 
-  const manageGuest = () => {
-    axios
-      .post("/guest")
-      .then(() => {
-        setRedirect(true);
-      })
-      .catch(() => {});
+  const manageGuest = async () => {
+    try {
+      await axios.post("/guest");
+      history.replace("/tasks");
+    } catch (error) {
+      console.error("Guest login failed:", error);
+    }
   };
 
-  return redirect ? (
-    <Redirect to="/tasks" />
-  ) : (
+  return (
     <>
       <Header theme={theme} changeTheme={changeTheme}>
         <AuthButtonGroup manageModal={manageModal} />
